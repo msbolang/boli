@@ -1,0 +1,2909 @@
+<!doctype html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Top-Booking
+        </title>
+        <meta name="keywords" content="中港通" />
+        <meta name="description" content="中港通" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <!-- Mobile Devices Support @begin -->
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+        <meta content="no-cache" http-equiv="pragma">
+        <meta content="0" http-equiv="expires">
+        <meta content="telephone=no, address=no" name="format-detection">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <!-- apple devices fullscreen -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <style>
+            .city_site2 {background: #fff; border-top: 1px solid #ddd; border-bottom:1px solid #ddd; margin-top: 5px; float: left; width: 100%; }
+            .city_site2 li {border-bottom: 1px dashed #ddd; line-height: 50px; cursor: pointer; font-size: 14px; }
+            .city_site2 li i {float: right; margin-right: 20px;margin-top: 10px; display: none; }
+        </style>
+        <script>
+           function getsec(str)
+
+            {
+
+                var str1 = str.substring(1, str.length) * 1;
+
+                var str2 = str.substring(0, 1);
+
+                if (str2 == "s")
+
+                {
+
+                    return str1 * 1000;
+
+                }
+
+                else if (str2 == "h")
+
+                {
+
+                    return str1 * 60 * 60 * 1000;
+
+                }
+
+                else if (str2 == "d")
+
+                {
+
+                    return str1 * 24 * 60 * 60 * 1000;
+
+                }
+
+            }
+
+        function setCookie(name, value, time)
+
+            {
+
+                var Days = 30;
+
+                var exp = new Date();
+
+                exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+
+                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+
+                var strsec = getsec(time);
+
+                var exp = new Date();
+
+                exp.setTime(exp.getTime() + strsec * 1);
+
+                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+
+            }
+            
+                function getCookie(name)
+            {
+
+                var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+                if (arr = document.cookie.match(reg))
+
+                return (arr[2]);
+
+                else
+
+                return null;
+            }
+
+            //获取URL参数
+            function GetRequest() {
+
+                var url = location.search; //获取url中"?"符后的字串   
+
+                var theRequest = new Object();
+
+                if (url.indexOf("?") != -1) {
+
+                    var str = url.substr(1);
+
+                    strs = str.split("&");
+
+                    for (var i = 0; i < strs.length; i++) {
+
+                        theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+
+                    }
+
+                }
+                
+                
+               // setCookie(name, value, time)
+                
+                
+              
+                
+            if(theRequest.webdelivery!=undefined)
+              {
+                    setCookie('webdelivery', 1, 'h1');
+                    setCookie('formcityid', theRequest.form_city_id, 'h1');
+                    setCookie('tocityid', theRequest.to_city_id, 'h1');
+              }
+ // console.log(theRequest); 第一次 Object {webdelivery: "1", form_city_id: "2", to_city_id: "3"}  从callbake过来 空对象 Object {}
+                 return theRequest;
+            }
+
+            /*****cookie******/
+
+         
+          
+
+        
+            function getcodefn()
+            {
+
+                //user_index,index.html,1.html,i=query_order
+
+                var Request = new Object();
+            
+                Request = GetRequest();
+   
+                var state = '';
+
+                if (Request["i"] !== undefined) {
+
+                    if (Request["i"] == 'query_order') {
+
+                        state = '2';
+
+                    }
+
+                    if (Request["i"] == 'user_index') {
+
+                        state = '3';
+
+                    }
+
+                } else {
+
+                    state = '1';
+
+                }
+
+                var oauthURL = 'https://open.weixin.qq.com/connect/oauth2/authorize?';
+
+                var appid = 'wx9d5a7d36fe3ff22b'; //正式运营
+              //  var appid = 'wx53b77dce1921b475'; //长辉测试
+                var url_ = encodeURIComponent('http://m.top-booking.com/piao/callback.php');
+
+                var data_ = 'appid=' + appid + '&redirect_uri=' + url_ + '&response_type=code&scope=snsapi_base&state=' + state + '#wechat_redirect';
+
+                window.location.href = oauthURL + data_;
+
+            }
+
+            if (!getCookie("myopenid")) 
+            {
+
+                getcodefn();
+
+            }
+        </script>
+        <!-- Mobile Devices Support @end -->
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js?20160204">
+        </script>
+        <link rel="stylesheet" type="text/css" href="css/reset.css" media="all">
+        <link rel="stylesheet" href="css/css.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+        <style type="text/css">
+            .startDate{z-index: 99;}
+            .ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all{width:100%;left: 0;height: 100%;z-index: 99;} 
+            .ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all{width:100%}
+        </style>
+        <script type="text/javascript" src="js/js.js">
+        </script>
+        <script type="text/javascript" src="js/ajax.js">
+        </script>
+        <!-- 日曆 -->
+        <link rel="stylesheet" href="css/smoothness/jquery.ui.css" type="text/css"
+        />
+        <link rel="stylesheet" type="text/css" href="css/css2.css" />
+        <!-- 提示 -->
+        <script src="js/sweet-alert.min.js">
+        </script>
+        <link rel="stylesheet" href="css/sweet-alert.css">
+        <script type="text/javascript">
+                var newtodaytophp = null;
+           var mytodaytophp=function(){
+           $.ajax({
+               type : "get",
+               url : "1.php",
+               async : false,
+              success : function(newdata){
+	      newtodaytophp = new Date(newdata);
+       }
+                            })             
+    };  
+         mytodaytophp();
+            $(function() {
+                //去程点击
+                $(".departurecity").click(function() {
+
+                    $(".order1").hide();
+
+                    $(".city").show();
+
+                })
+
+                $(".destinationcity").click(function() {
+
+                    $(".order1").hide();
+
+                    $(".city").show();
+
+                })
+
+                // 回程点击
+                $(".departurecity_go").click(function() {
+
+                    $(".order2_1").hide();
+
+                    $(".city2").show();
+
+                    if (allhuichengchufa != null)
+
+                    {
+
+                        $("#selecity1").html(allhuichengchufa);
+
+                    } else {
+
+                        gethuichengzhandian(1); //加載回程站點
+                    }
+
+                })
+
+                $(".destinationcity_go").click(function() {
+
+                    $(".order2_1").hide();
+
+                    $(".city2").show();
+
+                    if (allhuichengmudi != null)
+
+                    {
+
+                        $("#selecity1").html(allhuichengmudi);
+
+                    } else {
+
+                        gethuichengzhandian(2); //加載回程站點
+                    }
+
+                })
+
+                $(".from_city").click(function() {
+
+                    $(".date").find(".from_city").removeClass("action")
+
+                    $(this).addClass("action")
+
+                    $(".order1").hide();
+
+                    $(".city").show();
+
+                })
+
+           // 立即购票点击
+
+                $(".buy_ticket").click(function() {
+
+                    if( Ccity == null)
+                    {
+                        swal("错误", "请选择出发城市！", "error");
+                        return false;
+                    }
+                     if( Mcity == null  )
+                     {
+                        swal("错误", "请选择目的城市！", "error");
+                        return false;
+                     }
+
+                    if (cfPlatformIDname == null) 
+                    {
+                        swal("错误", "请选择出发站点！", "error");
+                        return false;
+                    }
+
+                    if (mdPlatformIDname == null) {
+                        swal("错误", "请选择目的站点！", "error");
+                        return false;
+                    }
+
+                    $(".order1").hide();
+
+                    $(".order2").show();
+
+                    // alert($(".startDate").val())
+
+                    $(".order2 .startDate").val($(".startDate").val())
+
+                })
+
+                // 
+
+                $(".date_ticket li").click(function() {
+
+                    $(".order2").hide();
+
+                    $(".order3 ").show()
+
+                })
+
+                /*****************************************************************************/
+
+                var user_id = unescape(getCookie("myopenid")); //openID
+                var myimagehead = document.getElementById("myimagehead"); //微信头像
+                var mywxusername = document.getElementById("mywxusername"); //微信名
+                var oMyname = document.getElementById("name");
+                var oMtel = document.getElementById("telephone");
+                var oMyemail = document.getElementById("email_");
+
+                if (getCookie("myusrname")) {
+                    oMyname.value = decodeURIComponent(getCookie("myusrname"));
+                }
+
+                if (getCookie("myTel")) {
+                    oMtel.value = unescape(getCookie("myTel"));
+                }
+
+                if (getCookie("myEmail")) {
+                    oMyemail.value = unescape(getCookie("myEmail"));
+                }
+
+                if (myimagehead.src.indexOf('images/user.png') > -1)
+
+                {
+
+                    //用 unescape() 对escape() 编码
+
+                    myimagehead.src = unescape(getCookie("myimage"));
+
+                }
+
+                if (mywxusername.innerHTML.indexOf('Kaho') > -1)
+
+                {
+
+                    mywxusername.innerHTML = decodeURIComponent(getCookie("myname"));
+
+                }
+
+                
+
+                // 查詢訂單
+
+                var nowpage = 0;
+
+                var url = document.URL;
+
+                if (url.lastIndexOf("?") > 0) {
+
+                    var pageIndex = url.substring(url.lastIndexOf("?") + 3);
+
+                    if (pageIndex == "query_order") {
+
+                        //查询订单
+                        $(".tishi").show()
+
+                        $(".query_order").show().siblings("div").hide()
+
+                        var user_id = unescape(getCookie("myopenid"));
+
+                        $.ajax({
+
+                            type: "get",
+
+                            async: true,
+
+                            url: Url + "getorderinfo.ashx",
+
+                            // data:"Format=jsonp&customer_id=9&OrderNo=20160128114129746",
+                            data: "Format=jsonp&customer_id=" + user_id,
+
+                            dataType: "jsonp",
+
+                            jsonp: "callback",
+
+                            jsonpCallback: "zgtjsonpcallback",
+
+                            error: function() {
+
+},
+
+                            success: function(json) {
+
+                                if (json.errorCode == "000" && json.JsonData) {
+
+                                    var src = ""
+
+                                    var hsrc = ""
+
+                                    var nsrc = ""
+
+                                    var csrc = ""
+
+                                    if (json.JsonData == "") {
+
+} else {
+
+                                        $(".tishi").hide()
+
+                                        for (var i = 0; i < json.Count; i++) {
+                              //     console.log(json);
+                                            if (json.JsonData[i].isReturn == 0) {
+
+                                                var json_line = "单程";
+                                                
+                                                 if(json.JsonData[i].Address){
+                                                        var jsonAddress=json.JsonData[i].Address;
+                                                    }else{
+                                                         var jsonAddress='';
+                                                    }
+                                                    
+                                                    
+                                                if (json.JsonData[i].OrderStatus == "HADPAY") { //單程 已支付
+                                                    
+                                                  
+                                                    src += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p></div></li>'
+
+                                                    // 單程 已支付 hsrc
+                                                    hsrc += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p></div></li>'
+
+                                                } else if (json.JsonData[i].OrderStatus == "CANCEL") {//已取消
+                                                  
+                                                    src += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p></div></li>'
+                                                                   
+                                                //    nsrc += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p></div></li>'
+
+                                                } else if (json.JsonData[i].OrderStatus == "ERROR") {//已取消
+                                                  
+                                                    src += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p></div></li>'
+                       
+                                                }else { //未支付
+
+                                                    //單程 非支付
+                                                    src += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span><a href="javascript:wechatzhifu(' + json.JsonData[i].OrderNo + ','+json.JsonData[i].OrderCost+');" class="whactpay">支付</a></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p></div></li>'
+                                                    // 單程非支付
+                                                    nsrc += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span><a href="javascript:wechatzhifu(' + json.JsonData[i].OrderNo + ','+json.JsonData[i].OrderCost+');" class="whactpay">支付</a></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p></div></li>'
+                                                }
+
+                                            } else {
+                                                
+                                                var json_line = "双程";
+                                                
+                                                    if(json.JsonData[i].Address){
+                                                        var jsonAddress=json.JsonData[i].Address;
+                                                    }else{
+                                                         var jsonAddress='';
+                                                    }
+                                                    
+                                                if (json.JsonData[i].OrderStatus == "HADPAY") { //雙程 已支付
+                                                    src += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p><div class="border"></div><h2 class=""><span>回程</span>' + json.JsonData[i].DestinatCityName + '(' + json.JsonData[i].ReturnOriginName + ')-' + json.JsonData[i].OriginCityName + '(' + json.JsonData[i].ReturnDestinationName + ')</h2><p>回程日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Return_date + "  " + json.JsonData[i].RunTimeR + '</span></p></div></li>'
+                                                    // 雙城 已支付
+                                                    hsrc += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p><div class="border"></div><h2 class=""><span>回程</span>' + json.JsonData[i].DestinatCityName + '(' + json.JsonData[i].ReturnOriginName + ')-' + json.JsonData[i].OriginCityName + '(' + json.JsonData[i].ReturnDestinationName + ')</h2><p>回程日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Return_date + "  " + json.JsonData[i].RunTimeR + '</span></p></div></li>'
+
+                                                } else if (json.JsonData[i].OrderStatus == "CANCEL") { //雙程 已取消
+                                                    src += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p><div class="border"></div><h2 class=""><span>回程</span>' + json.JsonData[i].DestinatCityName + '(' + json.JsonData[i].ReturnOriginName + ')-' + json.JsonData[i].OriginCityName + '(' + json.JsonData[i].ReturnDestinationName + ')</h2><p>回程日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Return_date + "  " + json.JsonData[i].RunTimeR + '</span></p></div></li>'
+                                                  
+                                                  //  nsrc += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p><div class="border"></div><h2 class=""><span>回程</span>' + json.JsonData[i].DestinatCityName + '(' + json.JsonData[i].ReturnOriginName + ')-' + json.JsonData[i].OriginCityName + '(' + json.JsonData[i].ReturnDestinationName + ')</h2><p>回程日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Return_date + "  " + json.JsonData[i].RunTimeR + '</span></p></div></li>'
+
+                                                }else if (json.JsonData[i].OrderStatus == "ERROR") { //雙程 已取消
+                                                    src += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '(已通过短信发送确认)</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p><div class="border"></div><h2 class=""><span>回程</span>' + json.JsonData[i].DestinatCityName + '(' + json.JsonData[i].ReturnOriginName + ')-' + json.JsonData[i].OriginCityName + '(' + json.JsonData[i].ReturnDestinationName + ')</h2><p>回程日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Return_date + "  " + json.JsonData[i].RunTimeR + '</span></p></div></li>'
+      
+                                                }else { //雙程 未支付
+                                                    src += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span><a href="javascript:wechatzhifu(' + json.JsonData[i].OrderNo + ','+json.JsonData[i].OrderCost+');" class="whactpay">支付</a></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p><div class="border"></div><h2 class=""><span>回程</span>' + json.JsonData[i].DestinatCityName + '(' + json.JsonData[i].ReturnOriginName + ')-' + json.JsonData[i].OriginCityName + '(' + json.JsonData[i].ReturnDestinationName + ')</h2><p>回程日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Return_date + "  " + json.JsonData[i].RunTimeR + '</span></p></div></li>'
+                                                    // 雙城 未支付
+                                                    nsrc += '<li><h1><i style="" class="fa fa-file-text "></i>订单号：<span>' + json.JsonData[i].OrderNo + '</span><span style="color:#dd3030">(' + json.JsonData[i].StatusName + ')</span><a href="javascript:wechatzhifu(' + json.JsonData[i].OrderNo + ','+json.JsonData[i].OrderCost+');" class="whactpay">支付</a></h1><h2><span>' + json_line + '</span>' + json.JsonData[i].OriginCityName + "(" + json.JsonData[i].DepatureOriginName + ')-' + json.JsonData[i].DestinatCityName + "(" + json.JsonData[i].DepatureDestinatName + ")" + '</h2><p>订单总额：<span class="query_order_table_box_list_time"><i class="fa fa-jpy"></i>' + json.JsonData[i].OrderCost + '<span></p><p>出行日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Departure_date + "   " + json.JsonData[i].RunTimeT + '</span></p><i class="xiangxi"><i class="fa fa-angle-right fa-lg" style="color:#666;"></i></i><div class="query_order_table_box_list_date"><div class="border"></div><p>下单时间 ：' + json.JsonData[i].OrderTime + '</p><p>订票总张数：' + json.JsonData[i].Numbers + '张</p><p>使用人姓名：' + json.JsonData[i].Passenger + '</p><p>联络电话：' + json.JsonData[i].Tel + '</p><p>换票地点：' + jsonAddress + '</p><p>备注：' + json.JsonData[i].Remark + '</p><div class="border"></div><h2 class=""><span>回程</span>' + json.JsonData[i].DestinatCityName + '(' + json.JsonData[i].ReturnOriginName + ')-' + json.JsonData[i].OriginCityName + '(' + json.JsonData[i].ReturnDestinationName + ')</h2><p>回程日期：<span class="query_order_table_box_list_time">' + json.JsonData[i].Return_date + "  " + json.JsonData[i].RunTimeR + '</span></p></div></li>'
+
+                                                }
+
+                                            }
+
+                                        }
+
+                                        // console.log(src)
+                                        if (src == "") {
+
+                                            src = '<div class="query_order_table_box_list_not"><i class="fa fa-file-text" style=""></i><p>亲，您没有已经完成的订单哦！</p><a href="index.html">去购票</a></div>'
+
+                                        } else if (nsrc == "") {
+
+                                            nsrc = '<div class="query_order_table_box_list_not"><i class="fa fa-file-text" style=""></i><p>亲，您没有未支付的订单哦！</p><a href="index.html">去购票</a></div>'
+
+                                        } else if (hsrc == "") {
+
+                                            hsrc = '<div class="query_order_table_box_list_not"><i class="fa fa-file-text" style=""></i><p>亲，您没有已完成的订单哦！</p><a href="index.html">去购票</a></div>'
+
+                                        }
+
+                                        $(".query_order_table_box_list ul").eq(0).html(src)
+
+                                        $(".query_order_table_box_list ul").eq(1).html(nsrc)
+
+                                        $(".query_order_table_box_list ul").eq(2).html(hsrc)
+
+                                    };
+
+                                } else if (json.errorCode == "207") {
+
+                                    var src = '<div class="query_order_table_box_list_not"><i class="fa fa-file-text" style=""></i><p>亲，您没有订单记录哦！</p><a href="index.html">去购票</a></div>'
+
+                                    $(".query_order_table_box_list ul").eq(0).html(src)
+
+                                    $(".query_order_table_box_list ul").eq(1).html(src)
+
+                                    $(".query_order_table_box_list ul").eq(2).html(src)
+
+                                };
+
+                            }
+
+                        })
+
+                    }
+
+                }
+
+            })
+
+            function tishi() {
+
+                $(".tishi").toggle();
+
+            }
+        </script>
+        <script type="text/javascript">
+            window.onload = function()
+            {
+                $(".loading").css("display", "none")
+            };
+        </script>
+    </head>
+    
+    <body>
+        <div class="layout">
+            <div class="loading">
+                <img src="images/loading2.gif" alt="" style="width:70px" class="logo">
+                <p>
+                    Loading....
+                </p>
+            </div>
+            <!-- loading -->
+            <div class="tishi none">
+                <i class="fa fa-spinner fa-spin fa-2x">
+                </i>
+            </div>
+            <!-- loading -->
+            <!-- 下订单页 -->
+            <div class="order1  ">
+                <div class="inner">
+                    <h1 class="h1">
+                        <span>
+                            <img src="images/logo.png" alt="" style="width:60px">
+                        </span>
+                        <a class="user" href="?i=user_index">
+                            <i class="fa fa-user fa-1.5x">
+                            </i>
+                        </a>
+                        <a class="phone" href="tel:8620-87363288">
+                            <i class="fa fa-phone fa-1.5x">
+                            </i>
+                        </a>
+                    </h1>
+                    <ul class="date">
+                        <li class="ul_city">
+                            <i class="fa fa-bus fa-lg">
+                            </i>
+                            出发城市
+                            <span class="date_li_span from_city departurecity" id="cfcity">
+                                请选择出发城市
+                                <i class="fa fa-angle-right fa-lg">
+                                </i>
+                            </span>
+                        </li>
+                        <li class="ul_city">
+                            <i class="fa fa-bus fa-lg"></i>
+                            到达城市
+                            <span class="date_li_span from_city destinationcity" id="mdcity">
+                                请选择到达城市
+                                <i class="fa fa-angle-right fa-lg"></i>
+                            </span>
+                        </li>
+                        <div class="site">
+                            <li>
+                                <i class="fa fa-map-marker fa-lg">
+                                </i>
+                                出发站点
+                                <span class="date_li_span from_city departurecity" id="cfplatform">
+                                    请选择出发站点
+                                    <i class="fa fa-angle-right fa-lg">
+                                    </i>
+                                </span>
+                            </li>
+                            <li>
+                                <i class="fa fa-map-marker fa-lg">
+                                </i>
+                                到达站点
+                                <span class="date_li_span from_city destinationcity" id="mdplatform">
+                                    请选择到达站点
+                                    <i class="fa fa-angle-right fa-lg">
+                                    </i>
+                                </span>
+                            </li>
+                        </div>
+                        <li>
+                            <i class="fa fa-calendar fa-lg">
+                            </i>
+                            出发日期
+                            <span class="date_li_span departuredate">
+                                <input type="text" id="startDateinp" class="startDate" readonly />
+                        </li>
+                        <!-- <input type="text" id="startDate" />
+                        -->
+                        <!-- <input type="text" readonly id="endDate"/>
+                        -->
+                        <li>
+                            <i class="fa fa-exchange fa-lg">
+                            </i>
+                            路线类型
+                            <div class="linetype">
+                                <span id="oneway">
+                                    单程
+                                </span>
+                                <span id="towway">
+                                    往返
+                                </span>
+                            </div>
+                        </li>
+                        <!-- <li>显示币种
+                        <span class="date_li_span currency"> 
+                        <select>
+                        <option value ="HKD">HKD</option>
+                        <option value ="RMB">RMB</option>
+                        <option value="MOP">MOP</option>
+                        </select>
+                        </span>
+                        </li> -->
+                    </ul>
+                    <p class="reminder">
+                        <i class="fa fa-exclamation">
+                        </i>
+                        温馨提示：
+                    </p>
+                    <button type="button" class="ticket_button buy_ticket" id="buttongo">
+                        选择班次
+                        <i class="fa fa-sign-in fa-lg">
+                        </i>
+                    </button>
+                    <div class="lately">
+                        <h1>
+                            <i class="fa fa-tags">
+                            </i>
+                            最近常用
+                        </h1>
+                        <ul>
+                            <li style="display:none;">
+                                <a href="#">
+                                    香港(海洋公园)-广州(广东大厦)
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 下订单页end -->
+            <!-- 确认订单页 -->
+            <div class="order2 none">
+                <nav class="nav">
+                    <a class="return order2_order1">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+                        </i>
+                        <i class="fa  fa-angle-left fa-stack-1x fa-2x" style="margin-left: -2px;margin-top: 4px;">
+                        </i>
+                    </a>
+                    <div class="div nav_text" id="gotitle">
+                    </div>
+                </nav>
+                <div class="ticket_detailed">
+                    <ul class="date">
+                        <li class="date_last bb">
+                            <i class="fa fa-angle-left fa-lg">
+                            </i>
+                            前一天
+                        </li>
+                        <li>
+                            <i class="fa fa-calendar-check-o fa-lg">
+                            </i>
+                            <input readonly type="text" class="startDate" />
+                        </li>
+                        <li class="date_next aa">
+                            后一天
+                            <i class="fa fa-angle-right fa-lg">
+                            </i>
+                        </li>
+                    </ul>
+                    <p class="no" id="nochar">
+                        <i class="fa fa-file-text fa-5x" style="">
+                        </i>
+                        抱歉，暂无该天班车~
+                    </p>
+                    <ul class="date_ticket">
+                        <div class="inner" id="chepiao">
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="order2_2 none">
+                <nav class="nav">
+                    <a class="return order2_2_order2">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+                        </i>
+                        <i class="fa  fa-angle-left fa-stack-1x fa-2x" style="margin-left: -2px;margin-top: 4px;">
+                        </i>
+                    </a>
+                    <div class="div nav_text ">
+                        <h1 id="huichengtitle">
+                            香港(海洋公园)-广州(广东大厦)
+                        </h1>
+                      
+                    </div>
+                </nav>
+                <div class="ticket_detailed">
+                    <ul class="date">
+                        <li class="date_last bb_hui">
+                            <i class="fa fa-angle-left fa-lg">
+                            </i>
+                            前一天
+                        </li>
+                        <li>
+                            <i class="fa fa-calendar-check-o fa-lg">
+                            </i>
+                            <input readonly type="text" class="startDate" />
+                        </li>
+                        <li class="date_next aa_hui">
+                            后一天
+                            <i class="fa fa-angle-right fa-lg">
+                            </i>
+                        </li>
+                    </ul>
+                    <p class="no" id="nochar_2">
+                        <i class="fa fa-file-text fa-5x" style="">
+                        </i>
+                        抱歉，暂无该天班车~
+                    </p>
+                    <ul class="date_ticket">
+                        <div class="inner" id="chepiao_2">
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <!-- 确认订单页end -->
+            <!-- 回程 -->
+            <div class="order2_1 none">
+                <nav class="nav">
+                    <a class="order2_1_order2 return">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+                        </i>
+                        <i class="fa  fa-angle-left fa-stack-1x fa-2x" style="margin-left: -2px;margin-top: 4px;">
+                        </i>
+                    </a>
+                    <div class="div nav_text">
+                        <h1>
+                            商务订票
+                        </h1>
+                        <i class="fa fa-long-arrow-left">
+                        </i>
+                        回程
+                    </div>
+                </nav>
+                <div class="returntrip" id="goprice">
+                    <p>
+                        香港(海洋公园)-广州(广东大厦)
+                        <span>
+                            (去程)
+                        </span>
+                    </p>
+                    <p class="p2">
+                        出发日期
+                        <span>
+                            2016-1-15/09:00
+                        </span>
+                    </p>
+                    <p class="p2">
+                        票价
+                        <span>
+                            RMB：
+                            <i class="fa fa-jpy">
+                            </i>
+                            160
+                        </span>
+                    </p>
+                </div>
+                <ul class="order2_1_date">
+                    <div class="inner">
+                        <li>
+                            <i class="fa fa-bus fa-lg">
+                            </i>
+                            出发城市
+                            <span class="date_li_span" id="agencfcity">
+                                广州
+                                <i class="fa fa-angle-right fa-lg">
+                                </i>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa fa-bus fa-lg">
+                            </i>
+                            到达城市
+                            <span class="date_li_span" id="agenmdcity">
+                                香港
+                                <i class="fa fa-angle-right fa-lg">
+                                </i>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa fa-map-marker fa-lg">
+                            </i>
+                            出发站点
+                            <span class="date_li_span departurecity_go">
+                                <span id="hccfz">
+                                    请选择出发站点
+                                </span>
+                                <i class="fa fa-angle-right fa-lg">
+                                </i>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa fa-map-marker fa-lg">
+                            </i>
+                            到达站点
+                            <span class="date_li_span destinationcity_go">
+                                <span id="hcmdz">
+                                    请选择到达站点
+                                </span>
+                                <i class="fa fa-angle-right fa-lg">
+                                </i>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa fa-calendar fa-lg">
+                            </i>
+                            回程日期
+                            <span class="date_li_span departuredate">
+                                <input readonly type="text" class="startDate" id="huichengstardata" />
+                                <i class="fa fa-angle-right fa-lg">
+                                </i>
+                            </span>
+                        </li>
+                        <button type="button" class="ticket_button" id="gethuichengbanci">
+                            选择回程班次
+                            <i class="fa fa-sign-in fa-lg">
+                            </i>
+                        </button>
+                    </div>
+                </ul>
+            </div>
+            <!-- 回程end -->
+            <!-- 确认订单页信息 -->
+            <div class="order3 none">
+                <nav class="nav">
+                    <a class="return order3_order2">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+                        </i>
+                        <i class="fa  fa-angle-left fa-stack-1x fa-2x" style="margin-left: -2px;margin-top: 4px;">
+                        </i>
+                    </a>
+                    <div class="div nav_text ">
+                        <h2>
+                            订单信息
+                        </h2>
+                    </div>
+                </nav>
+                <div class="order3_detailed" id="topinfo">
+                    <p>
+                        香港(海洋公园)-广州(广东大厦)
+                    </p>
+                    <p class="order3_detailed_day">
+                        <i class="fa fa-calendar-check-o ">
+                        </i>
+                        01-15 /11:00
+                        <span>
+                            (今天)
+                        </span>
+                    </p>
+                    <p>
+                        <i class="fa fa-ticket">
+                        </i>
+                        换票地点：南京街25号地下中港通旅行社（朗逸酒店对面）
+                    </p>
+                </div>
+                <div class="order3_numbe">
+                    <ul class="cr_ul">
+                        <li class="button subtract numbe_no">
+                            <i class="fa fa-minus">
+                            </i>
+                        </li>
+                        <li>
+                            预定人数x
+                            <input type="tel" value="1" id="piaonum">
+                            <p>
+                            </p>
+                            <p id="danjiaprice">
+                                (单价)RMB：
+                                <span class="price">
+                                    <i class="fa fa-jpy">
+                                    </i>
+                                    115
+                                </span>
+                            </p>
+                        </li>
+                        <li class="button add">
+                            <i class="fa fa-plus">
+                            </i>
+                        </li>
+                    </ul>
+                    <!-- <ul class="et_ul">
+                    <li class="button subtract et no">-</li>
+                    <li>儿童x <input type="tel" value="0">
+                    <p>(单价)RMB：<span class="price">65</span></p>
+                    </li>
+                    <li class="button add">+</li>
+                    </ul> -->
+                </div>
+                <div class="order3_ul">
+                    <ul class=" order3_info ">
+                        <div class="inner">
+                            <li>
+                                <span class="span1">
+                                    姓名：
+                                </span>
+                                <div class="input">
+                                    <input id="name" type="text" placeholder="请输入姓名(乘车人1)" onBlur="name1(this)">
+                                </div>
+                            </li>
+                            <li>
+                                <span class="span1">
+                                    联络电话：
+                                </span>
+                                <div class="input">
+                                    <input type="text" placeholder="请输入联络电话" id="telephone" onBlur="phone(this)">
+                                </div>
+                            </li>
+                            <li>
+                                <span class="span1">
+                                    电子郵箱：
+                                </span>
+                                <div class="input">
+                                    <input type="text" id="email_" placeholder="请输入电子郵箱(选填)" onBlur="email(this)">
+                                </div>
+                            </li>
+                            <li>
+                                <span class="span1">
+                                    备注：
+                                </span>
+                                <div class="input">
+                                    <input type="text" id="remarks" placeholder="请输入备注(选填)">
+                                </div>
+                            </li>
+                        </div>
+                    </ul>
+                    <p style="color:#666;font-size:14px;text-indent: 1em;float:left">
+                        *默认乘车人1为第一联系人
+                    </p>
+                </div>
+                <div class="inner">
+                    <p class="reminder">
+                        <i class="fa fa-exclamation">
+                        </i>
+                        温馨提示：
+                        <span style="color:#aaa">
+                            为了能成功预订该产品，请阁下在订单提交成功后30分钟内完成付款，以免该产品无位或无票。
+                        </span>
+                    </p>
+                </div>
+                <div class="pay">
+                    订单总额：RMB：
+                    <span class="pay_sum" id="paysummon">
+                       
+                        115.00
+                    </span>
+                    <p>
+                        <i class="fa fa-clock-o fa-lg"></i>
+                        请在30分钟内完成付款，否则订单将会取消
+                    </p>
+                    <a href="javascript:wechatzhifu();">
+                        支付
+                        <i class="fa fa-sign-in fa-lg">
+                        </i>
+                    </a>
+                </div>
+            </div>
+            <!-- 确认订单页信息end -->
+            <!-- 选择城市/站点 -->
+            <div class="city none">
+                <nav class="nav ">
+                    <a class="return city_order1">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+                        </i>
+                        <i class="fa  fa-angle-left fa-stack-1x fa-2x" style="margin-left: -2px;margin-top: 4px;">
+                        </i>
+                    </a>
+                    <div class="div nav_text ">
+                        <h2>
+                            请选择
+                        </h2>
+                    </div>
+                </nav>
+                <!-- <ul class="city_site2">
+                <div class="inner" id="selecity1"></div>
+                </ul>
+                -->
+                <ul class="city_site">
+                    <div class="inner" id="selecity">
+                    </div>
+                </ul>
+            </div>
+            <!-- 选择城市/站点end -->
+            <!-- 选择城市/站点-回程 -->
+            <div class="city2 none">
+                <nav class="nav ">
+                    <a class="return order2_2_order2">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+                        </i>
+                        <i class="fa  fa-angle-left fa-stack-1x fa-2x" style="margin-left: -2px;margin-top: 4px;">
+                        </i>
+                    </a>
+                    <div class="div nav_text ">
+                        <h2>
+                            请选择
+                        </h2>
+                    </div>
+                </nav>
+                <ul class="city_site2">
+                    <div class="inner" id="selecity1">
+                    </div>
+                </ul>
+            </div>
+            <!-- 选择城市/站点-回程 END-->
+            <!-- 查询订单 -->
+            <div class=" query_order none">
+                <div class="query_order_table">
+                    <nav class="nav">
+                        <a class="return" href='index.html?i=user_index'>
+                            <i class="fa fa-circle-thin fa-stack-2x">
+                            </i>
+                            <i class="fa  fa-angle-left fa-stack-1x fa-2x" style="margin-left: -2px;margin-top: 4px;">
+                            </i>
+                        </a>
+                        <ul class="div">
+                            <li class="action">
+                                全部
+                            </li>
+                            <li>
+                                未支付
+                            </li>
+                            <li>
+                                已完成
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="query_order_table_box">
+                        <div class="query_order_table_box_list">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div class="query_order_table_box_list">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div class="query_order_table_box_list">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 查询订单end -->
+            <!-- 個人資料 -->
+            <div class=" user_info none">
+                <nav class="nav">
+                    <a class="return" href="index.html?i=user_index">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+                        </i>
+                        <i class="fa  fa-angle-left fa-stack-1x fa-2x" style="margin-left: -2px;margin-top: 4px;">
+                        </i>
+                    </a>
+                    <div class="div nav_text ">
+                        <h2>
+                            个人资料设定
+                        </h2>
+                    </div>
+                </nav>
+                <div class="user_info_ul">
+                    <div class="inner">
+                        <li>
+                            <span class="span1">
+                                姓名：
+                            </span>
+                            <div class="input">
+                                <input type="text" placeholder="请输入姓名" id="UserInfoName" onBlur="name1(this)">
+                            </div>
+                        </li>
+                        <li>
+                            <span class="span1">
+                                联络电话：
+                            </span>
+                            <div class="input">
+                                <input type="text" placeholder="请输入联络电话" id="UserInfoPhone" onBlur="phone(this)">
+                            </div>
+                        </li>
+                        <li>
+                            <span class="span1">
+                                电子郵箱：
+                            </span>
+                            <div class="input">
+                                <input type="text" placeholder="请输入电子邮箱" id="UserInfoEmail" onBlur="email(this)">
+                            </div>
+                        </li>
+                    </div>
+                </div>
+                <div class="inner">
+                    <button class="ticket_button save_data" type="button" style="margin-top:30px;float:left;width:100%;"
+                    id="save_data">
+                        保存资料
+                    </button>
+                </div>
+            </div>
+            <!-- 個人資料end -->
+            <!-- 個人中心 -->
+            <div class="user_index none">
+                <nav class="nav">
+                    <a class="return" href="index.html">
+                        <i class="fa fa-circle-thin fa-stack-2x">
+                        </i>
+                        <i class="fa  fa-angle-left fa-stack-1x fa-2x" style="margin-left: -2px;margin-top: 4px;">
+                        </i>
+                    </a>
+                    <div class="div nav_text ">
+                        <h2>
+                            个人中心
+                        </h2>
+                    </div>
+                </nav>
+                <div class="user_index_top">
+                </div>
+                <div class="inner">
+                    <div class="user_header">
+                        <img id="myimagehead" src="images/user.png" alt="">
+                    </div>
+                    <span class="user_name" id="mywxusername">
+                        Kaho(男)
+                    </span>
+                </div>
+                <ul class="user_index_ul">
+                    <div class="inner">
+                        <li>
+                            <a id="user_info">
+                                <i class="fa fa-pencil-square-o user_index_ul_i">
+                                </i>
+                                资料管理
+                                <i class="fa fa-angle-right fa-lg">
+                                </i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="?i=query_order">
+                                <i class="fa fa-file-text user_index_ul_i">
+                                </i>
+                                订单管理
+                                <i class="fa fa-angle-right fa-lg">
+                                </i>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+            <!-- 個人中心end -->
+        </div>
+
+        <script>
+            //獲取時間
+            $.get( "http://m.top-booking.com/piao/1.php", function( data ) {
+          
+             $(".startDate").val(data)
+             
+
+            } );
+           
+            var Url = 'http://hometest.easytonent.com:38080/TopHoliday/Interface/TopBooking/'; //線上接口
+            
+          //  var Url = 'http://10.236.52.91/TopHoliday/Interface/TopBooking/'; //本地調試接口
+            
+            var Ccity = null; //出發城市ID 
+
+            var Ccityname = null; //出發城市名稱
+
+            var Mcity = null; //目的城市ID
+
+            var Mcityname = null; //目的城市名稱
+
+            var allCcity = null; //所有城市 
+
+            var allMcity = null; //接收返回的目的城市 以便多次使用 
+
+            var cfPlatform = null; //所有出發站點
+
+            var mdPlatform = null; //所有目的站點
+
+            var cfPlatformID = null; //出發站點ID
+
+            var mdPlatformID = null; //目的站點ID
+
+            var cfPlatformIDname = null; //出發站點名稱
+            var mdPlatformIDname = null; //目的站點名稱
+
+            var cfPlatformIDname_h = null; //回程出發站點名稱
+            var mdPlatformIDname_h = null; //回程目的站點名稱
+
+            var cfPlatform_goaway = null; //回程 出發站點ID
+            var cfPlatform_name_goaway = null; //回程 出發站點名稱
+            var mdPlatform_goaway = null; //回程 目的站點ID
+            var mdPlatform_name_goaway = null; //回程 目的站名稱
+            var allhuichengchufa = null; //所有回程出發站點
+            var allhuichengmudi = null; //所有回程目的站點
+
+            var Oneway = null; //單雙程
+            var Runid = null;
+            var Cctime = null; //出發時間
+            var Yupiao = null; //是否有票
+            var Price = null; //票價
+            var Datatime = null; //日期 
+            var TicketCategoryId = null;
+            var Changeticketaddress = null; //换票地址
+            var ticketTYPE = null; //票类型 大人或儿童
+            //回程信息
+            var Runid_h = null; //回程 班次ID
+            var Cctime_h = null;
+            var Yupiao_h = null; //回程是否有票;
+            var Price_h = null; //回程價
+            var TicketCategoryId_h = null; //回程票ID
+            var Datatime_h = null; //回程日期
+            //定义回程出发站点属性
+            function getmdcityid_go(obj)
+
+            {
+
+                $(".city2").hide();
+
+                $(".order2_1").show();
+
+                cfPlatform_goaway = $(obj).attr('myid');
+//log('回程站点出发站点ID'+cfPlatform_goaway);
+                cfPlatform_name_goaway = $(obj).attr('myname');
+
+                document.getElementById("hccfz").innerHTML = cfPlatform_name_goaway;
+
+                gethuichengzhandian(2);
+
+            }
+
+            //定义目的回程站点属性
+            function getmdcityid_go2(obj)
+
+            {
+
+                $(".city2").hide();
+
+                $(".order2_1").show();
+
+                mdPlatform_goaway = $(obj).attr('myid');
+//console.log('回程目的站点ID'+mdPlatform_goaway);
+                mdPlatform_name_goaway = $(obj).attr('myname');
+
+                document.getElementById("hcmdz").innerHTML = mdPlatform_name_goaway;
+
+                //gethuichengzhandian(2);  顯示站點選擇
+                gethuichengbanci();
+
+            }
+
+            //回程班次获取
+            function gethuichengbanci()
+
+            {
+
+                var D = $("#huichengstardata").val();//回程時間
+
+                cfPlatformIDname_h = $("#hccfz").html(); //回程出發站點名稱
+                mdPlatformIDname_h = $("#hcmdz").html(); //回程目的站點名稱
+                
+                
+                if (cfPlatform_goaway) {
+                    var C = cfPlatform_goaway;
+                } else {
+                    cfPlatform_goaway = mdPlatformID;
+                    var C = mdPlatformID;
+                }
+
+                if (mdPlatform_goaway) {
+                    var M = mdPlatform_goaway;
+                } else {
+                    mdPlatform_goaway = cfPlatformID;
+                    var M = cfPlatformID;
+                }
+
+     
+                var data_ = "Format=josnp&departure_date=" + D + "&origin_id=" + C + "&destination_id=" + M + "&is_return=0";
+
+           
+
+                $.ajax({
+
+                    type: "get",
+
+                    async: true,
+
+                    url: Url + "get_classes.ashx",
+                   
+
+                    data: data_,
+
+                    dataType: "jsonp",
+
+                    jsonp: "callback",
+
+                    jsonpCallback: "zgtjsonpcallback",
+
+                    error: function() {
+
+                        console.log('fail');
+
+                    },
+
+                    success: function(json) {
+
+                        //$("#selecity")
+
+                        $(".tishi").hide()
+
+                        if (json.errorCode == "000")
+
+                        {
+
+                            $("#nochar_2").css("display", 'none');
+                             $("#chepiao_2").css("display", 'block');
+                        } else {
+                            swal("错误", json.Message, "error");
+                             $("#nochar_2").css("display", 'block');
+                            $("#chepiao_2").css("display", 'none');
+
+                        }
+
+                        var str = '';
+
+                        var num = 0;
+                    if (json.errorCode=='000') {
+                        if (json.JsonData) {
+
+                            //回程
+                            if (json.JsonData.length != 0) {
+
+                                for (var i = 0; i < json.JsonData.length; i++)
+
+                                {
+                                     for (var j = 0; j < json.JsonData[i].tpa.length; j++)
+                                                   {
+                                    str += '<li ticketCategoryId_h=' + json.JsonData[i].tpa[j].ticketCategoryId + '  runid_h=' + json.JsonData[i].RunId + ' price_h=' + json.JsonData[i].tpa[j].fee + ' yupiao_h=' + json.JsonData[i].seatNum + ' cctime_h=' + json.JsonData[i].runStartTime + '><p class="p1"><i class="fa fa-bus fa-lg"></i><span>出</span> <font color="#4d8bd8">' + json.JsonData[i].runStartTime + '</font>' + Ccityname + '(' + cfPlatformIDname + ')</p><p style="margin-left: 40px;"><i class="fa fa-long-arrow-down" style="color:#666"></i> <i class="fa fa-long-arrow-down" style="color:#666"></i></p><p class="p1"><i class="fa fa-bus fa-lg"></i><span class="mu">目</span>' + Mcityname + '(' + mdPlatformIDname + ')</p><div class="date_ticket_detailed"><p class="price">RMB：<i class="fa fa-jpy"></i>' + json.JsonData[i].tpa[j].fee + '</p><p class="surplus"><i class="fa fa-ticket"></i>剩余' + json.JsonData[i].seatNum + '张票</p><p class="surplus">' +json.JsonData[i].tpa[j].ticketType+ '</p></div></li>';
+                                                    }
+                                }
+
+                                $("#chepiao_2").html(str);
+
+                                date_ticketliclick_h();
+
+                            }
+
+                        }
+                    }else{
+                        swal("错误", json.Message, "error");
+                         }
+                    }
+
+                });
+
+            }
+
+            //回程站点获取 city_type=1 出發站點   city_type=2 目的站點 
+    function gethuichengzhandian(wh)
+             {
+                // mid 變成了出發站點ID  
+/*
+      cfPlatformID = $(obj).attr('myid');
+      cfPlatformIDname = $(obj).attr('myname');
+      console.log(cfPlatformID);
+      console.log(cfPlatformIDname);
+*/
+
+                //第三步  傳遞出發城市和目的城市獲取出發站點  city_type=1 出發站點   city_type=2 目的站點 
+
+                var data_ = '&city_type=' + wh + '&form_city_id=' + Mcity + '&to_city_id=' + Ccity;
+
+                $.ajax({
+
+                    type: "get",
+
+                    async: true,
+
+                    url: Url + "get_locat.ashx",
+
+                    data: 'Format=josnp' + data_,
+
+                    dataType: "jsonp",
+
+                    jsonp: "callback",
+
+                    jsonpCallback: "zgtjsonpcallback",
+
+                    error: function() {
+
+                        console.log('fail');
+
+                    },
+
+                    success: function(json) {
+                if (json.errorCode=='000') {
+                        if (json.JsonData) {
+
+                         
+                            var str = '';
+
+                            if (wh == 1) {
+
+                                for (var i = 0; i < json.JsonData.length; i++)
+
+                                {
+
+                                    //出發站點 和 目的站點列表
+                                    str += '<li onclick="getmdcityid_go(this)" myid=' + json.JsonData[i].StatiID + ' myname=' + json.JsonData[i].StatiName + '>' + json.JsonData[i].StatiName + '<i class="fa fa-check"></i></li>';
+
+                                }
+
+                                $("#selecity").html("");
+
+                                allhuichengchufa = str;
+
+                                $("#selecity1").html(str);
+
+                            } else {
+
+                                for (var i = 0; i < json.JsonData.length; i++)
+
+                                {
+
+                                    //出發站點 和 目的站點列表
+                                    str += '<li onclick="getmdcityid_go2(this)" myid=' + json.JsonData[i].StatiID + ' myname=' + json.JsonData[i].StatiName + '>' + json.JsonData[i].StatiName + '<i class="fa fa-check"></i></li>';
+
+                                }
+
+                                $("#selecity").html("");
+
+                                allhuichengmudi = str;
+
+                                $("#selecity1").html(str);
+
+                            }
+
+                        }
+                        }else{
+                               swal("错误", json.Message, "error");
+                                  }
+                    }
+
+                });
+
+            }
+
+            //回程班车属性定义
+            function date_ticketliclick_h() {
+
+                // price='+num+' yupiao='+json.JsonData[i].seatNum+' cctime='+json.JsonData[i].runStartTime+'
+                $(".date_ticket li").click(function() {
+                    var Ishuicheng_h = $(this).attr('ishuicheng_h');
+
+                    Runid_h = $(this).attr('runid_h'); //去 1 班次ID
+                    
+                    Cctime_h = $(this).attr('cctime_h');
+
+                    Yupiao_h = $(this).attr('yupiao_h');
+
+                    Price_h = $(this).attr('price_h');
+
+                    TicketCategoryId_h = $(this).attr('ticketCategoryId_h');
+                 //   console.log(ticketcategoryid_h);
+                    Datatime_h = $('.order2_1 .startDate').val();
+                        console.log('order2_1  '+Datatime_h);
+                    $(".order2_2").hide();
+                    $(".order2").hide();
+                    $(".order3 ").show();
+
+                    //     $(".nav").html();  
+
+                    //創建訂單
+                    var str_topinfo = '<p>' + Ccityname + '(' + cfPlatformIDname + ')-' + Mcityname + '(' + mdPlatformIDname + ')</p><p class="order3_detailed_day"><i class="fa fa-calendar-check-o " ></i>' + Datatime + '/' + Cctime + ' <span>去程</span></p>';
+                    str_topinfo += '<p>' + Mcityname + '(' + cfPlatformIDname_h + ')-' + Ccityname + '(' + mdPlatformIDname_h + ')</p><p class="order3_detailed_day"><i class="fa fa-calendar-check-o " ></i>' + Datatime_h + '/' + Cctime_h + ' <span>回程</span></p>';
+                    str_topinfo += '<p><i class="fa fa-ticket"></i>换票地点：' + Changeticketaddress + '</p><p>' +ticketTYPE+ '</p>';
+
+                    $("#topinfo").html(str_topinfo);
+
+                    var str_danjiaprice = '(单价)RMB：<span class="price"><i class="fa fa-jpy"></i>' + Price + '</span>';
+
+                    $("#danjiaprice").html(str_danjiaprice);
+
+                    var str_paysum = '<i class="fa fa-jpy"></i>' + Price;
+
+                    $("#paysummon").html(str_paysum);
+
+                })
+
+            }
+
+            //班次属性定义 
+            function date_ticketliclick()
+
+            {
+
+                // price='+num+' yupiao='+json.JsonData[i].seatNum+' cctime='+json.JsonData[i].runStartTime+'
+                $(".date_ticket li").click(function()
+
+                {
+                    var Ishuicheng = $(this).attr('ishuicheng');
+                    Runid = $(this).attr('runid'); //去 1 班次ID
+                    Cctime = $(this).attr('cctime');
+                    Yupiao = $(this).attr('yupiao');
+                    Price = $(this).attr('price');
+                    TicketCategoryId = $(this).attr('ticketCategoryId');
+
+                    Changeticketaddress = $(this).attr('changeticketaddress');
+                    ticketTYPE = $(this).attr('ticketTYPE');
+                    if (Ishuicheng == 0) //單程  1回程
+                    {
+
+                        $(".order2").hide();
+
+                        $(".order3 ").show();
+
+                    } else {
+
+                        $(".order2").hide();
+
+                        var oGoprice = document.getElementById("goprice");
+
+                        oGoprice.innerHTML = '<p>' + Ccityname + '(' + cfPlatformIDname + ')-' + Mcityname + '(' + mdPlatformIDname + ')  <span>(去程)</span></p><p class="p2">出发日期 <span>' + Datatime + '/' + Cctime + '</span></p><p class="p2">票价<span>RMB：<i class="fa fa-jpy"></i>' + Price + '</span></p>';
+
+                        document.getElementById('agencfcity').innerHTML = Mcityname;
+
+                        document.getElementById('agenmdcity').innerHTML = Ccityname;
+
+                        document.getElementById('hccfz').innerHTML = mdPlatformIDname;
+
+                        document.getElementById('hcmdz').innerHTML = cfPlatformIDname;
+
+                        gethuichengzhandian(1);
+
+                        $(".order2_1").show();
+
+                    }
+
+                    //創建訂單
+                    var str_topinfo = '<p>' + Ccityname + '(' + cfPlatformIDname + ')-' + Mcityname + '(' + mdPlatformIDname + ')</p><p class="order3_detailed_day"><i class="fa fa-calendar-check-o " ></i>' + Datatime + '/' + Cctime + ' <span></span></p><p><i class="fa fa-ticket"></i>换票地点：' + Changeticketaddress + '</p><p>' +ticketTYPE+ '</p>';
+
+                    $("#topinfo").html(str_topinfo);
+
+                    var str_danjiaprice = '(单价)RMB：<span class="price"><i class="fa fa-jpy"></i>' + Price + '</span>';
+
+                    $("#danjiaprice").html(str_danjiaprice);
+
+                    var str_paysum = '<i class="fa fa-jpy"></i>' + Price;
+
+                    $("#paysummon").html(str_paysum);
+
+                })
+
+            }
+
+            function city_siteliclock() {
+
+                $(this).addClass("action").siblings().removeClass("action");
+
+                $(".order1 .from_city.action").text($(this).text());
+
+                $(".order1").show();
+
+                $(".city").hide();
+
+            }
+
+            //重置元素事件
+            function congzhing() {
+
+                $(".city_site li").click(function() {
+
+                    $(this).addClass("action").siblings().removeClass("action");
+
+                    $(".order1 .from_city.action").text($(this).text());
+
+                    $(".order1").show();
+
+                    $(".city").hide();
+
+                })
+
+            }
+
+            //第四步 定义目的站点
+            function getmdcityid_4(obj)
+
+            {
+                mdPlatformID = $(obj).attr('myid');
+                mdPlatformIDname = $(obj).attr('myname');
+
+            };
+
+            //點擊目的城市后 獲取 目的站點
+
+            function getmdcityid_3(obj, wh)
+
+            {
+
+                // mid 變成了出發站點ID  
+               
+                cfPlatformID = $(obj).attr('myid');
+
+                cfPlatformIDname = $(obj).attr('myname');
+
+              //  console.log(cfPlatformID);
+
+                // console.log(cfPlatformIDname);
+
+                //第三步  傳遞出發城市和目的城市獲取出發站點  city_type=1 出發站點   city_type=2 目的站點 
+
+                var data_ = '&city_type=' + wh + '&form_city_id=' + Ccity + '&to_city_id=' + Mcity+'&beginstops='+cfPlatformID;;
+
+                $.ajax({
+
+                    type: "get",
+
+                    async: true,
+
+                    url: Url + "get_locat.ashx",
+
+                    data: 'Format=josnp' + data_,
+
+                    dataType: "jsonp",
+
+                    jsonp: "callback",
+
+                    jsonpCallback: "zgtjsonpcallback",
+
+                    error: function() {
+
+                        console.log('fail');
+
+                    },
+
+                    success: function(json) {
+                          if (json.errorCode=='000') {
+                        if (json.JsonData) {
+
+                            var str = '';
+
+                            for (var i = 0; i < json.JsonData.length; i++)
+
+                            {
+
+                                //出發站點 和 目的站點列表
+
+                                str += '<li onclick="getmdcityid_4(this)" myid=' + json.JsonData[i].StatiID + ' myname=' + json.JsonData[i].StatiName + '>' + json.JsonData[i].StatiName + '<i class="fa fa-check"></i></li>';
+
+                            }
+
+                            $("#selecity").html(str);
+
+                            mdPlatform = str; //all 目的站點賦值  
+
+                            congzhing();
+                            
+
+                        }
+                        }else{
+                               swal("错误", json.Message, "error");
+                             
+                        }
+                    }
+
+                });
+
+            }
+
+            //點擊目的城市后 獲取 出發站點
+            function getmdcityid_2(obj, wh,ISweb) {
+
+                Mcity = $(obj).attr('myid');
+
+                Mcityname = $(obj).attr('myname');
+                //测试4
+                if(ISweb){
+                    $('#mdcity').html(Mcityname);
+                    $('.order1 .site').css('display','block');
+                }
+                
+                cfPlatformIDname = null;
+                mdPlatformIDname = null; //定义目的站点ID为NULL 
+
+                //第三步  傳遞出發城市和目的城市獲取出發站點  city_type=1 出發站點   city_type=2 目的站點 
+
+                var data_ = '&city_type=' + wh + '&form_city_id=' + Ccity + '&to_city_id=' + Mcity;
+
+                $.ajax({
+
+                    type: "get",
+
+                    async: true,
+
+                    url: Url + "get_locat.ashx",
+
+                    data: 'Format=josnp' + data_,
+
+                    dataType: "jsonp",
+
+                    jsonp: "callback",
+
+                    jsonpCallback: "zgtjsonpcallback",
+
+                    error: function() {
+
+                        console.log('fail');
+
+                    },
+
+                    success: function(json) {
+                    if (json.errorCode=='000') {
+                        if (json.JsonData) {
+
+                            var str = '';
+
+                            for (var i = 0; i < json.JsonData.length; i++)
+
+                            {
+
+                                //出發站點 和 目的站點列表
+
+                                str += '<li onclick="getmdcityid_3(this,2)" myid=' + json.JsonData[i].StatiID + ' myname=' + json.JsonData[i].StatiName + '>' + json.JsonData[i].StatiName + '<i class="fa fa-check"></i></li>';
+
+                            }
+
+                            $("#selecity").html(str);
+
+                            cfPlatform = str; //all 出發站點賦值  
+
+                            congzhing();
+
+                        }
+                    }else{
+                               swal("错误", json.Message, "error");
+                               
+                        }
+                    }
+
+                });
+
+            }
+
+            //2.第二步 點擊出發城市后 獲取對應目的城市 存入
+            function getincityid_1(obj,IsWeb)
+
+            {
+                //测试2
+                
+                tishi();
+
+                congzhing();
+
+                cfPlatformIDname = null; //定义目的站点为NULL 
+                mdPlatformIDname = null; //定义目的站点为NULL 
+
+                Ccity = $(obj).attr('myid');
+
+                Ccityname = $(obj).attr('myname');
+                
+                if(IsWeb){
+                    $('#cfcity').html(Ccityname);
+                }
+                document.getElementById("mdcity").innerHTML = '请选择目的城市';
+
+                $(".date li").eq(1).removeClass("city_selected");
+
+                $.ajax({
+
+                    type: "get",
+
+                    async: true,
+
+                    url: Url + "get_city.ashx",
+
+                    data: 'Format=josnp&city_type=2&form_city_id=' + Ccity,
+
+                    dataType: "jsonp",
+
+                    jsonp: "callback",
+
+                    jsonpCallback: "zgtjsonpcallback",
+
+                    error: function() {
+
+                        console.log('fail');
+
+                    },
+
+                    success: function(json) {
+
+                        var str = '';
+                     if (json.errorCode=='000') {
+                        if (json.JsonData) {
+
+                            if(getCookie('tocityid')){
+                                 var TocityID = getCookie('tocityid');
+                             }else{
+                                 var TocityID = null;
+                             }
+                               
+                                
+                                
+                            for (var i = 0; i < json.JsonData.length; i++) {
+                                //测试3
+                                if(TocityID){
+                                     if(TocityID==json.JsonData[i].CityID){
+                                        getmdcityid_2('<li onclick="getmdcityid_2(this,1)" myid=' + json.JsonData[i].CityID + ' myname=' + json.JsonData[i].CityName + '>' + json.JsonData[i].CityName + '<i class="fa fa-check"></i></li>',1,true); 
+                                     }
+                                }
+                                str += '<li onclick="getmdcityid_2(this,1)" myid=' + json.JsonData[i].CityID + ' myname=' + json.JsonData[i].CityName + '>' + json.JsonData[i].CityName + '<i class="fa fa-check"></i></li>';
+                            }
+
+                            $("#selecity").html(str);
+
+                            tishi();
+
+                            allMcity = str;
+
+                            congzhing();
+
+                        }
+                        }else{
+                               swal("错误", json.Message, "error");
+                             
+                        }
+
+                    }
+
+                });
+
+            }
+
+            $(function() {
+
+                /*开始加载出发城市*/
+                function star_getdeparturecity() {
+                    tishi();
+                    //1.開始獲取所有城市 
+
+                    $.ajax({
+
+                        type: "get",
+
+                        async: true,
+
+                        url: Url + "get_city.ashx",
+                      
+
+                        data: 'Format=josnp&city_type=1',
+
+                        dataType: "jsonp",
+
+                        jsonp: "callback",
+
+                        jsonpCallback: "zgtjsonpcallback",
+
+                        error: function() {
+
+                            console.log('fail');
+
+                        },
+
+                        success: function(json) {
+
+                            var str = '';
+  if (json.errorCode=='000') {
+                            if (json.JsonData) {
+                               
+                                    if(getCookie('formcityid')){
+                                        var FormcityID = getCookie('formcityid');
+                                    }else{
+                                        var FormcityID = null;
+                                    }
+                                for (var i = 0; i < json.JsonData.length; i++)
+
+                                {
+
+                                    //   str+="<li onclick='getincityid('+json.JsonData[i].CityID+','+json.JsonData[i].CityName+')'>"+json.JsonData[i].CityName+"<i class='fa fa-check'></i></li>";
+                                    if(FormcityID){
+                                     
+                                         if(FormcityID==json.JsonData[i].CityID){
+                                             //测试1
+                                             getincityid_1('<li onclick="getincityid_1(this)" myid=' + json.JsonData[i].CityID + ' myname=' + json.JsonData[i].CityName + '>' + json.JsonData[i].CityName + '<i class="fa fa-check"></i></li>',true);
+                                         }
+                                    }
+                                    str += '<li onclick="getincityid_1(this)" myid=' + json.JsonData[i].CityID + ' myname=' + json.JsonData[i].CityName + '>' + json.JsonData[i].CityName + '<i class="fa fa-check"></i></li>';
+
+                                }
+
+                                $("#selecity").html(str);
+
+                                tishi();
+
+                                allCcity = str;
+
+                                congzhing();
+
+                            }
+                        }else{
+                               swal("错误", json.Message, "error");
+                                Clicktimes = 0;
+                        }
+                        }
+
+                    });
+
+                }
+
+                //  star_getdeparturecity();//1.加載完即寫入數據 開始獲取所有城市 
+
+                // var Request1 = new Object();
+
+                var Request1 = GetRequest();
+
+                if (Request1["i"] === undefined)
+
+                {
+
+                    star_getdeparturecity(); //1.加載完即寫入數據 開始獲取所有城市 
+                }
+
+                //出發城市
+
+                $("#cfcity").click(function() {
+
+                    if (allCcity != null)
+
+                    {
+
+                        $("#selecity").html(allCcity);
+
+                        congzhing();
+
+                    }
+
+                });
+
+                //目的城市
+
+                $("#mdcity").click(function() {
+
+                    if (allMcity != null)
+
+                    {
+
+                        $("#selecity").html(allMcity);
+
+                        congzhing();
+
+                    }
+
+                });
+
+                //出發站點
+
+                $("#cfplatform").click(function() {
+
+                    if (cfPlatform != null)
+
+                    {
+
+                        $("#selecity").html(cfPlatform);
+
+                        congzhing();
+
+                    }
+
+                });
+
+                //目的站點
+
+                $("#mdplatform").click(function() {
+
+                    if (mdPlatform != null)
+
+                    {
+
+                        $("#selecity").html(mdPlatform);
+
+                        congzhing();
+
+                    }
+
+                });
+
+                //單程
+                $("#oneway").click(function() {
+
+                    Oneway = 0;
+
+                });
+
+                //雙程
+                $("#towway").click(function() {
+
+                    Oneway = 1;
+
+                });
+
+                Oneway = 0; //默認單程
+
+                Datatime = $("#startDateinp").val(); //默認今日
+
+                // 點擊購票 = 班次查詢 
+                $("#buttongo").click(function() {
+
+                   if( Ccity == null)
+                    {
+                        return false;
+                    }
+                     if( Mcity == null  )
+                     {
+                        return false;
+                     }
+
+                    if (cfPlatformIDname == null) 
+                    {
+                        return false;
+                    }
+
+                    if (mdPlatformIDname == null) {
+                        return false;
+                    }
+
+
+                    Datatime = $("#startDateinp").val();
+
+                    
+
+                    BCchiftquery(Datatime, cfPlatformID, mdPlatformID, Oneway);
+
+                    var Ccityname_ = Ccityname == null ? '': Ccityname;
+
+                    var cfPlatformIDname_ = cfPlatformIDname == null ? '': cfPlatformIDname;
+
+                    var Mcityname_ = Mcityname == null ? '': Mcityname;
+
+                    var mdPlatformIDname_ = mdPlatformIDname == null ? '': mdPlatformIDname;
+
+                    document.getElementById("gotitle").innerHTML = '<h1>' + Ccityname_ + '(' + cfPlatformIDname_ + ')-' + Mcityname_ + '(' + mdPlatformIDname_ + ')</h1><i class="fa fa-long-arrow-right"></i>去程';
+
+                });
+
+                $("#gethuichengbanci").click(function()
+                {
+                    var huichengstardata = $('#huichengstardata').val(); //获取回程日期
+                   // console.log(huichengstardata);
+                    //回程数据逻辑
+                    
+                if (!cfPlatform_goaway) {
+                   cfPlatform_goaway = mdPlatformID;
+                } 
+
+                if (!mdPlatform_goaway) {
+                    mdPlatform_goaway = cfPlatformID;
+                }
+
+                    gethuichengbanci(); //獲取回程班次
+                    //回程数据逻辑END
+document.getElementById("huichengtitle").innerHTML='<h1>'+Mcityname+'('+cfPlatformIDname_h +')-'+Ccityname+'('+mdPlatformIDname_h+')</h1><i class="fa fa-long-arrow-right"></i>回程';
+                    $(".order2_1").hide();
+                    $(".order2_2").show();
+
+                })
+
+                // 后一天
+
+                $(".aa").click(function() {
+
+                    var year = parseInt($(".order2 .startDate").val().substring(0, 4));
+
+                    var Month = parseInt($(".order2 .startDate").val().substring(5, 7));
+
+                    var day = parseInt($(".order2 .startDate").val().substring(8, 10)) + 1;
+
+                    var leapYearDay = ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) ? 1 : 0;
+
+                    var date = [31, 28 + leapYearDay, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+                    var month_day = parseFloat(Month) - 1;
+
+                    $(".ui-datepicker-append").css("display", "none")
+
+                    if (day > date[month_day]) {
+
+                        Month = Month + 1;
+
+                        day = 1;
+
+                    }
+
+                    if (Month > 12) {
+
+                        year = year + 1;
+
+                        Month = 1;
+
+                        day = 1;
+
+                    };
+
+                    if (day < 10) {
+
+                        day = "0" + day;
+
+                    };
+
+                    if (Month < 10) {
+
+                        Month = "0" + Month
+
+                    };
+
+                    $(".startDate").val(year + "-" + Month + "-" + day)
+
+                    var datatime_1 = year + "-" + Month + "-" + day;
+                    Datatime = datatime_1;
+
+               //     console.log(datatime_1)
+
+                    tishi()
+
+                    BCchiftquery(datatime_1, cfPlatformID, mdPlatformID, Oneway);
+
+                });
+
+                //前一天
+                $(".bb").click(function() {
+
+                    var year = parseInt($(".order2 .startDate").val().substring(0, 4));
+
+                    var Month = parseInt($(".order2 .startDate").val().substring(5, 7));
+
+                    var day = parseInt($(".order2 .startDate").val().substring(8, 10)) - 1;
+
+                    var leapYearDay = ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) ? 1 : 0;
+
+                    var date = [31, 28 + leapYearDay, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+                    var month_day = parseFloat(Month) - 2;
+
+                    $(".ui-datepicker-append").css("display", "none")
+
+                    if (day < 1) {
+
+                        Month = Month - 1;
+
+                        day = date[month_day]
+
+                    }
+
+                    if (Month < 1) {
+
+                        year = year - 1;
+
+                        Month = 12;
+
+                        day = 31;
+
+                    };
+
+                    if (day < 10) {
+
+                        day = "0" + day;
+
+                    };
+
+                    if (Month < 10) {
+
+                        Month = "0" + Month
+
+                    };
+
+                    $(".startDate").val(year + "-" + Month + "-" + day)
+
+                    //  datatime_2=year+"-"+Month+"-"+day;
+
+                    var datatime_2 = year + "-" + Month + "-" + day;
+
+                    Datatime = datatime_2;
+                  //  console.log(datatime_2)
+
+                    tishi();
+
+                    BCchiftquery(datatime_2, cfPlatformID, mdPlatformID, Oneway);
+
+                });
+
+                // 回程后一天
+
+                $(".aa_hui").click(function() {
+
+                    var year = parseInt($(".order2_2  .startDate").val().substring(0, 4));
+
+                    var Month = parseInt($(".order2_2  .startDate").val().substring(5, 7));
+
+                    var day = parseInt($(".order2_2  .startDate").val().substring(8, 10)) + 1;
+
+                    var leapYearDay = ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) ? 1 : 0;
+
+                    var date = [31, 28 + leapYearDay, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+                    var month_day = parseFloat(Month) - 1;
+
+                    $(".ui-datepicker-append").css("display", "none")
+
+                    if (day > date[month_day]) {
+
+                        Month = Month + 1;
+
+                        day = 1;
+
+                    }
+
+                    if (Month > 12) {
+
+                        year = year + 1;
+
+                        Month = 1;
+
+                        day = 1;
+
+                    };
+
+                    if (day < 10) {
+
+                        day = "0" + day;
+
+                    };
+
+                    if (Month < 10) {
+
+                        Month = "0" + Month
+
+                    };
+
+                    $(".order2_2  .startDate").val(year + "-" + Month + "-" + day)
+
+                    var datatime_1 = year + "-" + Month + "-" + day;
+
+                    Datatime_h = datatime_1;
+
+               //     console.log(datatime_1)
+
+                    tishi()
+                    
+               if (cfPlatform_goaway) {
+                    var C = cfPlatform_goaway;
+                } else {
+                    cfPlatform_goaway = mdPlatformID;
+                    var C = mdPlatformID;
+                }
+
+                if (mdPlatform_goaway) {
+                    var M = mdPlatform_goaway;
+                } else {
+                    mdPlatform_goaway = cfPlatformID;
+                    var M = cfPlatformID;
+                }
+
+                    BCchiftquery_hui(datatime_1, C, M, 0);
+
+                });
+
+                //回程前一天
+                $(".bb_hui").click(function() {
+
+                    var year = parseInt($(".order2_2  .startDate").val().substring(0, 4));
+                    var Month = parseInt($(".order2_2  .startDate").val().substring(5, 7));
+                    var day = parseInt($(".order2_2  .startDate").val().substring(8, 10)) - 1;
+                    var leapYearDay = ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) ? 1 : 0;
+                    var date = [31, 28 + leapYearDay, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                    var month_day = parseFloat(Month) - 2;
+
+                    $(".ui-datepicker-append").css("display", "none")
+
+                    if (day < 1) {
+
+                        Month = Month - 1;
+
+                        day = date[month_day]
+
+                    }
+
+                    if (Month < 1) {
+
+                        year = year - 1;
+
+                        Month = 12;
+
+                        day = 31;
+
+                    };
+
+                    if (day < 10) {
+
+                        day = "0" + day;
+
+                    };
+
+                    if (Month < 10) {
+
+                        Month = "0" + Month
+
+                    };
+
+                    $(".order2_2  .startDate").val(year + "-" + Month + "-" + day)
+
+                    datatime_2 = year + "-" + Month + "-" + day;
+
+                    var datatime_2 = year + "-" + Month + "-" + day;
+
+                 //   console.log(datatime_2)
+
+                    tishi()
+
+          
+                 if (cfPlatform_goaway) {
+                    var C = cfPlatform_goaway;
+                } else {
+                    cfPlatform_goaway = mdPlatformID;
+                    var C = mdPlatformID;
+                }
+
+                if (mdPlatform_goaway) {
+                    var M = mdPlatform_goaway;
+                } else {
+                    mdPlatform_goaway = cfPlatformID;
+                    var M = cfPlatformID;
+                }
+
+                    BCchiftquery_hui(datatime_2, C, M, 0);
+
+                });
+
+                // 回程班次查詢 
+
+                var BCchiftquery_hui = function(D, C, M, O)
+
+                {
+                 
+                    //var data_ = "Format=josnp&departure_date=" + D + "&origin_id=" + C + "&destination_id=" + M + "&is_return=1";
+                    var data_ = "Format=josnp&departure_date=" + D + "&origin_id=" + C + "&destination_id=" + M + "&is_return=" + O;
+
+                    $.ajax({
+
+                        type: "get",
+
+                        async: true,
+
+                        url: Url + "get_classes.ashx",
+
+                        data: data_,
+
+                        dataType: "jsonp",
+
+                        jsonp: "callback",
+
+                        jsonpCallback: "zgtjsonpcallback",
+
+                        error: function() {
+
+                            console.log('fail');
+
+                        },
+
+                        success: function(json) {
+
+                            //$("#selecity")
+
+                            $(".tishi").hide()
+
+                            if (json.errorCode == "000")
+
+                            {
+
+                                $("#nochar_2").css("display", 'none');
+                                $("#chepiao_2").css("display", 'block');
+                            } else {
+                                swal("错误", json.Message, "error");
+                                  $("#nochar_2").css("display", 'block');
+                                $("#chepiao_2").css("display", 'none');
+
+                            }
+
+                            var str = '';
+
+                            var num = 0;
+
+                            if (json.Count != 0) {
+ //console.log(json.JsonData);
+                                if (json.JsonData.length != 0) {
+
+                                    for (var i = 0; i < json.JsonData.length; i++)
+
+                                    {
+                                              for (var j = 0; j < json.JsonData[i].tpa.length; j++)
+                                                   {
+                                                str += '<li ticketCategoryId_h=' + json.JsonData[i].tpa[j].ticketCategoryId + ' ishuicheng_h=' + O + ' runid_h=' + json.JsonData[i].RunId + ' price_h=' + json.JsonData[i].tpa[j].fee + ' yupiao_h=' + json.JsonData[i].seatNum + ' cctime_h=' + json.JsonData[i].runStartTime + '><p class="p1"><i class="fa fa-bus fa-lg"></i><span>出</span> <font color="#4d8bd8">' + json.JsonData[i].runStartTime + '</font>' + Ccityname + '(' + cfPlatformIDname + ')</p><p style="margin-left: 40px;"><i class="fa fa-long-arrow-down" style="color:#666"></i> <i class="fa fa-long-arrow-down" style="color:#666"></i></p><p class="p1"><i class="fa fa-bus fa-lg"></i><span class="mu">目</span>' + Mcityname + '(' + mdPlatformIDname + ')</p><div class="date_ticket_detailed"><p class="price">RMB：<i class="fa fa-jpy"></i>' + json.JsonData[i].tpa[j].fee + '</p><p class="surplus"><i class="fa fa-ticket"></i>剩余' + json.JsonData[i].seatNum + '张票</p><p class="surplus">' +json.JsonData[i].tpa[j].ticketType+ '</p></div></li>';
+                                                    }
+                                    }
+
+                                    $("#chepiao_2").html(str);
+
+                                    date_ticketliclick_h();
+
+                                }
+
+                            } else {
+                                $("#chepiao_2").html("");
+                            }
+                        }
+                    });
+                }
+                //  回程班次查詢end
+
+                // 班次查詢 
+
+                var BCchiftquery = function(D, C, M, O)
+                {
+
+                    //departure_date 日期  origin_id上站點ID  destination_id下站點ID  is_return單雙程
+                    //get_classes.ashx?departure_date=2016-1-27&origin_id=234&destination_id=245
+
+                    var data_ = "Format=josnp&departure_date=" + D + "&origin_id=" + C + "&destination_id=" + M + "&is_return=" + O;
+
+                    //  var data_='departure_date=2016-2-11&origin_id=245&destination_id=231&psw=123&userName=123';
+
+                    $.ajax({
+
+                        type: "get",
+
+                        async: true,
+
+                        url: Url + "get_classes.ashx",
+                       
+
+                        data: data_,
+
+                        dataType: "jsonp",
+
+                        jsonp: "callback",
+
+                        jsonpCallback: "zgtjsonpcallback",
+
+                        error: function() {
+
+                            console.log('fail');
+
+                        },
+
+                        success: function(json) {
+
+                            //$("#selecity")
+                            $(".tishi").hide();
+                            if (json.errorCode == "000")
+                            {
+
+                                $("#nochar").css("display", 'none');
+                                $("#chepiao").css("display", 'block');
+                            } else {
+                                swal("错误", json.Message, "error");
+                                 $("#nochar").css("display", 'block');
+                                $("#chepiao").css("display", 'none');
+                            }
+
+                            var str = '';
+
+                            var num = 0;
+
+                            if (json.Count != 0) {
+ //console.log(json.JsonData);
+                                if (json.JsonData.length != 0) {
+
+                                    for (var i = 0; i < json.JsonData.length; i++)
+
+                                    {
+                                             for (var j = 0; j < json.JsonData[i].tpa.length; j++)
+                                                   {
+                                                     str += '<li ticketTYPE='+json.JsonData[i].tpa[j].ticketType+'  changeticketaddress=' + json.JsonData[i].tpa[j].address + ' address ticketCategoryId=' + json.JsonData[i].tpa[j].ticketCategoryId + ' ishuicheng=' + O + ' runid=' + json.JsonData[i].RunId + ' price=' + json.JsonData[i].tpa[j].fee + ' yupiao=' + json.JsonData[i].seatNum + ' cctime=' + json.JsonData[i].runStartTime + '><p class="p1"><i class="fa fa-bus fa-lg"></i><span>出</span> <font color="#4d8bd8">' + json.JsonData[i].runStartTime + '</font>' + Ccityname + '(' + cfPlatformIDname + ')</p><p style="margin-left: 40px;"><i class="fa fa-long-arrow-down" style="color:#666"></i> <i class="fa fa-long-arrow-down" style="color:#666"></i></p><p class="p1"><i class="fa fa-bus fa-lg"></i><span class="mu">目</span>' + Mcityname + '(' + mdPlatformIDname + ')</p><div class="date_ticket_detailed"><p class="price">RMB：<i class="fa fa-jpy"></i>' + json.JsonData[i].tpa[j].fee + '</p><p class="surplus"><i class="fa fa-ticket"></i>剩余' + json.JsonData[i].seatNum + '张票</p><p class="surplus">' +json.JsonData[i].tpa[j].ticketType+ '</p></div></li>';
+                                                   }
+                                    }
+
+                                    $("#chepiao").html(str);
+
+                                    date_ticketliclick();
+
+                                }
+
+
+
+
+                            } else {
+                                $("#chepiao").html("");
+                            }
+
+                        }
+
+                    });
+
+                }
+
+                /*loadend*/
+
+            });
+
+            var Clicktimes = 0;
+            
+            /*創建訂單*/
+            function wechatzhifu(order,ispre) {
+                     tishi();
+                     congzhing();
+             if(order)
+                {
+                        
+                                
+            var Openid = unescape(getCookie("myopenid"));
+           
+            var payexampleURL = "http://m.top-booking.com/piao/PAY/example/jsapi.php?";
+          
+            var datapay=ispre+','+order+',"","",'+Url;
+                 
+            window.location.href=payexampleURL+datapay;        
+                           
+                             
+                           
+                }else{
+              
+                if (Clicktimes == 0) {
+                    Clicktimes++;
+                    var userID = unescape(getCookie("myopenid"));
+
+                    var name = $("#name").val();
+
+                    var telephone = $("#telephone").val();
+
+                    var email = $("#email_").val();
+
+                    var remarks = $("#remarks").val();
+
+                    var piaonum = $("#piaonum").val();
+
+                    if (name == '') {
+                        // alert("請填寫中文名稱");
+                        swal("错误", "请填写中文名称！", "error");
+                        Clicktimes = 0;
+                        tishi();
+                        return false;
+                    }
+
+                    if (telephone == '') {
+                        // alert("請填寫聯繫電話！");
+                        swal("错误", "请填写联系电话！", "error");
+                        Clicktimes = 0;
+                          tishi();
+                        return false;
+                    }
+
+                    var oOrder3info = $(".order3_info");
+                    var data;
+                    //如果有多人 姓名电话用逗号分隔
+                    if (oOrder3info.length > 1) {
+
+                        var names, tels, objpassengename, objpassengetel;
+                        names = "passenger=" + name + ',';
+                        tels = "&passenger_tel=" + telephone + ',';
+
+                        for (var i = 1; i < oOrder3info.length; i++) {
+                            objpassengename = '.passengername_' + i;
+                            names += $(objpassengename).val() + ',';
+
+                            objpassengetel = '.passengertel_' + i;
+                            tels += $(objpassengetel).val() + ',';
+                        }
+
+                        names = names.substring(0, names.length - 1);
+                        tels = tels.substring(0, tels.length - 1);
+
+                        names = names.replace(/,undefined/g, '');
+                        tels = tels.replace(/,undefined/g, '');
+                        data = names + tels;
+
+                    } else {
+                        data = "passenger=" + name;
+                        data += "&passenger_tel=" + telephone;
+                    }
+
+                    data += "&ticket_category_line_id=" + TicketCategoryId + "&departure_origin_id=" + cfPlatformID + "&departure_destination_id=" + mdPlatformID;
+                    data += "&departure_run_id=" + Runid;
+                    data += "&departure_date=" + Datatime + "&number=" + piaonum;
+
+                    if (Oneway == 1) //如果是双程
+                    {
+/*  
+回程日期  return_date  选填 string  is_return=1，即是回程时，必填
+回程起始站點  return_origin_id   选填 string  is_return=1，即是回程时，必填
+回程班次  return_destination_id  选填 string  is_return=1，即是回程时，必填
+回程目的站點  return_run_id  选填 string  is_return=1，即是回程时，必填
+*/
+
+
+
+                   data += "&return_date=" + Datatime_h + "&return_origin_id=" + cfPlatform_goaway + "&return_destination_id=" + mdPlatform_goaway + "&return_run_id=" +Runid_h ;
+
+                    }
+
+                    data += "&remark=" + remarks + "&is_return=" + Oneway + "&order_type=1&customer_id=" + userID;
+
+
+                    //保存信息
+                    var saveuserinfo = function() {
+                        $.ajax({
+
+                            type: "get",
+
+                            async: true,
+
+                            url: Url + 'updatauser.ashx',
+
+                            data: "Format=jsonp&id=" + userID + "&name=" + name + "&tel=" + telephone + "&email=" + email,
+
+                            dataType: "jsonp",
+
+                            jsonp: "callback",
+
+                            jsonpCallback: "zgtjsonpcallback",
+
+                            error: function() {},
+
+                            success: function(json) {}
+
+                        })
+                    }
+
+
+
+                    $.ajax({
+
+                        type: "get",
+
+                        async: true,
+
+                        url: Url + "create_order.ashx",
+
+                        data: data,
+
+                        dataType: "jsonp",
+
+                        jsonp: "callback",
+
+                        jsonpCallback: "zgtjsonpcallback",
+
+                        error: function() {
+
+                            console.log('fail');
+
+                        },
+
+                        success: function(json) {
+
+                            saveuserinfo(); //保存用户信息
+       
+            
+        if (json.errorCode=='000') {
+                 
+           if (json.JsonData) 
+               {
+            var Price = $("#paysummon").html();
+            Price=Price.replace('<i class="fa fa-jpy">','');
+            Price=Price.replace("</i>",'');
+            var INorder = json.JsonData.OrderNo;    //訂單號                
+            var Openid = unescape(getCookie("myopenid"));
+            
+            var Info = null; //去程
+            var INDatatime = Datatime ; 
+            
+            if(Oneway==0)
+            {
+            var HInfo = null;  
+             
+            var INDatatime_h=null;
+            }else{
+             
+            var HInfo = null;  //回程
+            var INDatatime_h  = Datatime_h; 
+            }
+            
+            var payexampleURL = "http://m.top-booking.com/piao/PAY/example/jsapi.php?";
+            Price=Price.replace(/,/g,'');
+            // var datapay="price="+Price+'&order='+INorder+'&openid='+Openid+'&orderinfo='+Info+'&daytime='+INDatatime+'&wayone='+WAYone+'&huiinfo='+HInfo+'&huidaytime='+INDatatime_h;
+            var datapay=Price+','+INorder+','+INDatatime+','+Oneway+','+Url;
+                 
+            window.location.href=payexampleURL+datapay;
+                            } else {
+                                swal("错误", json.Message, "error");
+                                Clicktimes = 0;
+                            }
+                            
+                        }else{
+                               swal("错误", json.Message, "error");
+                                Clicktimes = 0;
+                        }
+                            
+                        }
+
+                    });
+                    
+                    
+                    
+
+                } else {
+                    swal("禁止", "请不要重复提交訂單！可以10秒后重试", "error");
+                    setTimeout(function(){Clicktimes = 0;},10000);
+                }
+            }
+
+            }
+
+            //修改 个人资料， 先获取资料
+
+            $("#user_info").click(function() {
+
+                var user_id = unescape(getCookie("myopenid"));
+
+                $(".tishi").show()
+
+                $.ajax({
+
+                    type: "get",
+
+                    async: true,
+
+                    url: Url + 'getuser.ashx?id=' + user_id,
+
+                    dataType: "jsonp",
+
+                    jsonp: "jsonpCallback",
+
+                    jsonpCallback: "zgtjsonpcallback",
+
+                    error: function() {
+
+},
+
+                    success: function(json) {
+
+                        $(".tishi").hide()
+
+                        $(".user_index ").hide()
+
+                        $(".user_info").show()
+
+                        if (json.errorCode == "000" && json.JsonData) {
+
+                            $("#UserInfoName").val(json.JsonData[0].Name)
+
+                            $("#UserInfoPhone").val(json.JsonData[0].Tel)
+
+                            $("#UserInfoEmail").val(json.JsonData[0].Email)
+
+                        }else{
+                            swal("错误", json.Message, "error");
+                        }
+
+                    }
+
+                })
+
+            });
+
+            // 保存资料
+
+            $("#save_data").click(function() {
+               if (name1('#UserInfoName')&&phone('#UserInfoPhone') &&email('#UserInfoEmail') ) {
+                    var img_url = $(".user_header").find("img").attr("src");
+
+                    var user_id = unescape(getCookie("myopenid"));
+
+                    var WeChatName = decodeURIComponent(getCookie("myname"));
+
+                    $(".tishi").show()
+
+                    $("#UserInfoName").val()
+
+                    var UserInfoName = $("#UserInfoName").val();
+
+                    var UserInfoPhone = $("#UserInfoPhone").val()
+
+                    var UserInfoEmail = $("#UserInfoEmail").val()
+
+                    $.ajax({
+
+                        type: "get",
+
+                        async: true,
+
+                        url: Url + 'updatauser.ashx',
+
+                        data: "Format=jsonp&id=" + user_id + "&wechat_name=" + WeChatName + "&name=" + UserInfoName + "&Picture=" + img_url + "&tel=" + UserInfoPhone + "&email=" + UserInfoEmail,
+
+                        dataType: "jsonp",
+
+                        jsonp: "callback",
+
+                        jsonpCallback: "zgtjsonpcallback",
+
+                        error: function() {
+
+                         },
+
+                        success: function(json) {
+
+                            $(".tishi").hide();
+
+                            if (json.errorCode == "000") {
+
+                                // sweetAlert("Oops...", "Something went wrong!", "error"); //失敗
+
+                                swal("成功", "资料保存成功！", "success"); //成功
+
+                            }else{
+                                 swal("错误", json.Message, "error");
+                            }
+
+                        }
+
+                    })
+                } 
+                else {
+                   swal("错误", "请正确填写", "error");
+                    return false;
+                }
+            });
+        </script>
+        <!-- 日曆 -->
+        <script type="text/javascript" src="js/jquery.ui.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/stay.js"></script>
+    </body>
+</html>

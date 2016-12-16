@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Payment</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    function WeChatPayment() {     
+            var order = '2321322';  //訂單號
+            var price = '0.10';     //金額
+            var Openid = '';       
+            var payexampleURL = 'http://'+window.location.host+"/protected/classes/wechatpayments/wcpayment/jsapi.php?";
+            var datapay=ispre+','+order+',"","",'+Url;
+            window.location.href=payexampleURL+datapay;        
+                //    swal("禁止", "请不要重复提交訂單！可以10秒后重试", "error");
+                //    setTimeout(function(){Clicktimes = 0;},10000);
+            }
+</script>
+
+
+<!--script language="javascript">
+//获取域名
+host = window.location.host;
+host2=document.domain; 
+
+//获取页面完整地址
+url = window.location.href;
+
+document.write("<br>host="+host)
+document.write("<br>host2="+host2)
+document.write("<br>url="+url)
+</script-->
+
+    </head>
+    <body>      
+        <div class="paymentdiv" onclick="WeChatPayment();">Payment</div>
+    </body>
+</html>
