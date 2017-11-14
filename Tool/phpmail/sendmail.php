@@ -14,10 +14,10 @@
 	//******************** 配置信息 ********************************
 	$smtpserver = "smtp.exmail.qq.com";//SMTP服务器
 	$smtpserverport =25;//SMTP服务器端口
-	$smtpusermail = "oa@easytonent.com";//SMTP服务器的用户邮箱
-	$smtpemailto = "bo.li@easytonent.com";//发送给谁
-	$smtpuser = "oa@easytonent.com";//SMTP服务器的用户帐号
-	$smtppass = "Aa123456789";//SMTP服务器的用户密码
+	$smtpusermail = "32233@32323nt.com";//SMTP服务器的用户邮箱
+	$smtpemailto = "bo3i@33nent.com";//发送给谁
+	$smtpuser = "o233a@e2323onent.com";//SMTP服务器的用户帐号
+	$smtppass = "23323322789";//SMTP服务器的用户密码
 	$mailtitle = "easycheck停车场数据无法获取";//邮件主题
 	$mailcontent = "<h1>easycheck停车场数据无法获取，请检查/easycheckapi/car.php </h1>";//邮件内容
 	$mailtype = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件
@@ -44,10 +44,10 @@ require_once "/bo/email.class.php";
 	//******************** 配置信息 ********************************
 	$smtpserver = "smtp.exmail.qq.com";//SMTP服务器
 	$smtpserverport =25;//SMTP服务器端口
-	$smtpusermail = "oa@easytonent.com";//SMTP服务器的用户邮箱
-	$smtpemailto = "bo.li@easytonent.com";//发送给谁
-	$smtpuser = "oa@easytonent.com";//SMTP服务器的用户帐号
-	$smtppass = "Aa123456789";//SMTP服务器的用户密码
+	$smtpusermail = "999@0t.com";//SMTP服务器的用户邮箱
+	$smtpemailto = "000@9t.com";//发送给谁
+	$smtpuser = "999@t.com";//SMTP服务器的用户帐号
+	$smtppass = "";//SMTP服务器的用户密码
 	$mailtitle = "easycheck停车场数据无法获取";//邮件主题
 	$mailcontent = "<h1>easycheck停车场数据无法获取，请检查/easycheck/car.php </h1>";//邮件内容
 	$mailtype = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件

@@ -26,8 +26,8 @@ Class Ticket {
       //  $this->secret = '998669c7ba39cd6100642253d90491ff';
         
         //正式
-       $this->appid = 'wxc10920f516aaf18f';
-       $this->secret = 'abb34b96da1bf7182773ed5cf9de82bf';
+       $this->appid = 'wxc10922332224423af18f';
+       $this->secret = 'abb34b242324423234f9de82bf';
        $this->IndexTitle = '';
     
         if($_SESSION['isGuide_USR']){

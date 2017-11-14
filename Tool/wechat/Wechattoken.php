@@ -17,8 +17,8 @@ Class Wechattoken {
         date_default_timezone_set('Asia/Shanghai');
      //   $this->appid = 'wxbd79232e5db670ed';
       //  $this->secret = '998669c7ba39cd6100642253d90491ff';
-        $this->appid = 'wxc10920f516aaf18f';
-        $this->secret = 'abb34b96da1bf7182773ed5cf9de82bf';
+        $this->appid = 'wxc102322442318f';
+        $this->secret = 'abb323232235cf9de82bf';
         $this->getToken = new Gtoken();
     }
 
